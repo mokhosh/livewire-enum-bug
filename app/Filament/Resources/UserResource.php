@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\UserStatus;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
@@ -23,7 +24,13 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('status')
+                    ->options(UserStatus::array())
+                    ->reactive()
+                    ->required(),
+                Forms\Components\Select::make('substatus')
+                    ->options(fn ($get) => UserStatus::substatuses($get('status')))
+                    ->required(),
             ]);
     }
 
