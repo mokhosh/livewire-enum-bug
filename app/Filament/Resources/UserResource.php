@@ -30,6 +30,7 @@ class UserResource extends Resource
                     ->required(),
                 Forms\Components\Select::make('substatus')
                     ->options(fn ($get) => UserStatus::substatuses($get('status')))
+                    ->reactive()
                     ->required(),
             ]);
     }
