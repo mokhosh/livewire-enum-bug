@@ -18,10 +18,25 @@ enum UserStatus: string
         });
     }
 
-    /** helper function to provide an array for filament select options */
+    /** helper functions to provide an array for filament select options */
     public static function makeArray(array $enums): array
     {
         $enums = array_map(fn ($case) => $case->value, $enums);
         return array_combine($enums, $enums);
+    }
+
+    public static function names(): array
+    {
+        return array_map(fn ($case) => $case->value, self::cases());
+    }
+
+    public static function values(): array
+    {
+        return array_column(self::cases(), 'value');
+    }
+
+    public static function array(): array
+    {
+        return array_combine(self::values(), self::names());
     }
 }
