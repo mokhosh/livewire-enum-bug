@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum ClientSubstatus: string
+enum AdminSubstatus: string
 {
     case Editor = 'Editor';
     case Moderator = 'Moderator';
